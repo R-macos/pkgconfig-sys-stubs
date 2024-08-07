@@ -1,0 +1,17 @@
+srcdir = @srcdir@
+VPATH = @srcdir@
+STUBS = @STUBS@
+prefix = @prefix@
+
+stubs: $(STUBS)
+	mkdir -p stubs
+	for i in $(STUBS); do cp -p $$i/* stubs/; done
+
+install: stubs
+	mkdir -p $(DESTDIR)/$(prefix)/lib/pkgconfig
+	cp -p stubs/* $(DESTDIR)/$(prefix)/lib/pkgconfig
+
+clean:
+	rm -rf stubs
+
+.PHONY: all install clean
